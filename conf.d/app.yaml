@@ -1,0 +1,13 @@
+
+mongodb:
+  hostip: "localhost:27017"
+  username: 
+  password: 
+
+fetcherplo:
+  code: "plo"
+  url: "https://proxy-list.org/english/index.php"
+
+fetcherfpln:
+  code: "fpln"
+  url: "https://free-proxy-list.net/"

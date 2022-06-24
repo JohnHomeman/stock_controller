@@ -3,6 +3,7 @@ package service
 import (
 	"bytes"
 	"stock_controller/glob"
+	"stock_controller/model"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -23,7 +24,7 @@ func NewFetcherPlo() *FetcherPlo {
 	}
 }
 
-func (f *FetcherPlo) Parse(bodyBytes []byte) (proxies []mongodb.Proxy, err error) {
+func (f *FetcherPlo) Parse(bodyBytes []byte) (proxies []model.Proxy, err error) {
 
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(bodyBytes))
 	if err != nil {
@@ -32,7 +33,7 @@ func (f *FetcherPlo) Parse(bodyBytes []byte) (proxies []mongodb.Proxy, err error
 	}
 
 	doc.Find(".table").Find("ul").Each(func(i int, s *goquery.Selection) {
-		item := mongodb.Proxy{SourceCode: f.Code}
+		item := model.Proxy{SourceCode: f.Code}
 
 		temp := strings.Split(s.Find(".proxy").Find("script").Text(), "'")
 		url := strings.Split(glob.DecodeBase64(temp[1]), ":")

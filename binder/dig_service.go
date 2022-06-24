@@ -19,6 +19,8 @@ type BackGroundAPP struct {
 	dig.In
 	MongoDB        *mongo.Client
 	CompanyService *service.CompanySave
+	Plo            *service.FetcherPlo
+	Fpln           *service.FetcherFpln
 }
 
 func InitBackGroundAPP(app BackGroundAPP) {
@@ -36,4 +38,7 @@ func Run() {
 	}
 	glob.MongoDB = backGroundAPP.MongoDB
 	go backGroundAPP.CompanyService.CompanySaveRun()
+	service.PloController = backGroundAPP.Plo
+	service.FplnController = backGroundAPP.Fpln
+
 }

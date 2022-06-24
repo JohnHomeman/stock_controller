@@ -19,6 +19,8 @@ func New() *dig.Container {
 		binder.Provide(glob.NewMongoCfg)
 		binder.Provide(glob.NewMongoServer)
 		binder.Provide(service.NewCompanySave)
+		binder.Provide(service.NewFetcherFpln)
+		binder.Provide(service.NewFetcherPlo)
 	})
 	return binder
 }
